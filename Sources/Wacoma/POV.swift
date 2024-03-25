@@ -297,16 +297,8 @@ public class OrbitingPOVController: ObservableObject, POVController {
         return markedPOV != nil
     }
 
-    public var isActionInProgress: Bool {
-        return flightInProgress != nil || dragInProgress != nil || pinchInProgress != nil || rotationInProgress != nil
-
-    }
     public var isFlightInProgress: Bool {
         return flightInProgress != nil
-    }
-
-    public var isGestureInProgress: Bool {
-        return dragInProgress != nil || pinchInProgress != nil || rotationInProgress != nil
     }
 
     public var settings = POVControllerSettings()
@@ -340,6 +332,12 @@ public class OrbitingPOVController: ObservableObject, POVController {
         self.orbitPermitted = true
         self.orbitEnabled = true
         self.orbitSpeed = 1/8
+        self.queuedFlights.removeAll()
+        self.flightInProgress = nil
+        self.dragInProgress = nil
+        self.pinchInProgress = nil
+        self.rotationInProgress = nil
+        self._lastUpdateTimestamp = nil
     }
 
     public func markPOV() {
@@ -394,6 +392,7 @@ public class OrbitingPOVController: ObservableObject, POVController {
         }
     }
 
+    /// DON'T COUNT ON THIS. Sometimes it's not delivered
     public func dragGestureEnded() {
         // print("OrbitingPOVController.dragGestureEnded")
         self.dragInProgress = nil
@@ -417,6 +416,7 @@ public class OrbitingPOVController: ObservableObject, POVController {
         }
     }
 
+    /// DON'T COUNT ON THIS. Sometimes it's not delivered
     public func pinchGestureEnded() {
         // print("OrbitingPOVController.pinchGestureEnded")
         pinchInProgress = nil
@@ -439,17 +439,13 @@ public class OrbitingPOVController: ObservableObject, POVController {
         }
     }
 
+    /// DON'T COUNT ON THIS. Sometimes it's not delivered
     public func rotationGestureEnded() {
         // print("OrbitingPOVController.rotationGestureEnded")
         self.rotationInProgress = nil
     }
 
     public func update(_ timestamp: Date) {
-        if isGestureInProgress {
-            // print("OrbitingPOVController.update: aborting because gesture is in progress")
-            return
-        }
-        
         self.currentPOV = makeUpdatedPOV(timestamp)
         self._lastUpdateTimestamp = timestamp
 
@@ -463,7 +459,8 @@ public class OrbitingPOVController: ObservableObject, POVController {
         // A: Yes, if it looks OK
         //
         // Q: how about if we're handling a gesture?
-        // A: No, it looks jerky.
+        // A: Problem there is that we don't always get notified whenn a gesture
+        //    ends. So we can't disallow update during a gesture.
         //
         // If orbit speed is > 0 then it looks like we're flying east over
         // the figure.
