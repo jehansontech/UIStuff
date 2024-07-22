@@ -124,7 +124,6 @@ extension SIMD4 {
 extension simd_float3x3 {
 
     public init(rotateFrom v1: SIMD3<Float>, to v2: SIMD3<Float>) {
-
         let axis = cross(v1, v2)
         let cosA = dot(v1, v2)
         let k: Float = 1 / (1 + cosA)
