@@ -82,7 +82,7 @@ public class GestureCoordinator: NSObject, UIGestureRecognizerDelegate {
         if let view = gesture.view {
             switch gesture.state {
             case .ended:
-                handlers.primaryTap?.tap(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryTap?.tap(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             default:
                 break
             }
@@ -93,7 +93,7 @@ public class GestureCoordinator: NSObject, UIGestureRecognizerDelegate {
         if let view = gesture.view {
             switch gesture.state {
             case .ended:
-                handlers.secondaryTap?.tap(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryTap?.tap(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             default:
                 break
             }
@@ -104,11 +104,11 @@ public class GestureCoordinator: NSObject, UIGestureRecognizerDelegate {
         if let view = gesture.view {
             switch gesture.state {
             case .began:
-                handlers.primaryLongPress?.longPressBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryLongPress?.longPressBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
-                handlers.primaryLongPress?.longPressMoved(to: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryLongPress?.longPressMoved(to: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .ended:
-                handlers.primaryLongPress?.longPressEnded(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryLongPress?.longPressEnded(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             default:
                 break
             }
@@ -119,11 +119,11 @@ public class GestureCoordinator: NSObject, UIGestureRecognizerDelegate {
         if let view = gesture.view {
             switch gesture.state {
             case .began:
-                handlers.secondaryLongPress?.longPressBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryLongPress?.longPressBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
-                handlers.secondaryLongPress?.longPressMoved(to: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryLongPress?.longPressMoved(to: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .ended:
-                handlers.secondaryLongPress?.longPressEnded(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryLongPress?.longPressEnded(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             default:
                 break
             }
@@ -136,7 +136,7 @@ public class GestureCoordinator: NSObject, UIGestureRecognizerDelegate {
             case .possible:
                 break
             case .began:
-                handlers.primaryDrag?.dragBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryDrag?.dragBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
                 let translation = gesture.translation(in: view)
                 // NOTE the factor of -1 on the scroll
@@ -154,7 +154,7 @@ public class GestureCoordinator: NSObject, UIGestureRecognizerDelegate {
             case .possible:
                 break
             case .began:
-                handlers.secondaryDrag?.dragBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryDrag?.dragBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
                 let translation = gesture.translation(in: view)
                 // NOTE the factor of -1 on the scroll
@@ -176,7 +176,7 @@ public class GestureCoordinator: NSObject, UIGestureRecognizerDelegate {
             case .possible:
                 break
             case .began:
-                handlers.pinch?.pinchBegan(at: RenderController.clipPoint(gesture.location(ofTouch: 0, in: view),
+                handlers.pinch?.pinchBegan(at: GestureCoordinator.clipPoint(gesture.location(ofTouch: 0, in: view),
                                                                           gesture.location(ofTouch: 1, in: view),
                                                                           view.bounds))
             case .changed:
@@ -197,7 +197,7 @@ public class GestureCoordinator: NSObject, UIGestureRecognizerDelegate {
             case .possible:
                 break
             case .began:
-                handlers.rotation?.rotationBegan(at: RenderController.clipPoint(gesture.location(ofTouch: 0, in: view),
+                handlers.rotation?.rotationBegan(at: GestureCoordinator.clipPoint(gesture.location(ofTouch: 0, in: view),
                                                                                 gesture.location(ofTouch: 1, in: view),
                                                                                 view.bounds))
             case .changed:
@@ -306,7 +306,7 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
         if let view = gesture.view {
             switch gesture.state {
             case .ended:
-                handlers.primaryTap?.tap(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryTap?.tap(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             default:
                 break
             }
@@ -318,7 +318,7 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
         if let view = gesture.view {
             switch gesture.state {
             case .ended:
-                handlers.secondaryTap?.tap(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryTap?.tap(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             default:
                 break
             }
@@ -330,11 +330,11 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
         if let view = gesture.view  {
             switch gesture.state {
             case .began:
-                handlers.primaryLongPress?.longPressBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryLongPress?.longPressBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
-                handlers.primaryLongPress?.longPressMoved(to: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryLongPress?.longPressMoved(to: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .ended:
-                handlers.primaryLongPress?.longPressEnded(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryLongPress?.longPressEnded(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             default:
                 break
             }
@@ -346,11 +346,11 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
         if let view = gesture.view  {
             switch gesture.state {
             case .began:
-                handlers.secondaryLongPress?.longPressBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryLongPress?.longPressBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
-                handlers.secondaryLongPress?.longPressMoved(to: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryLongPress?.longPressMoved(to: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .ended:
-                handlers.secondaryLongPress?.longPressEnded(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryLongPress?.longPressEnded(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             default:
                 break
             }
@@ -364,7 +364,7 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
             case .possible:
                 break
             case .began:
-                handlers.primaryDrag?.dragBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.primaryDrag?.dragBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
                 let translation = gesture.translation(in: view)
                 // macOS uses upside-down clip coords, so the scroll value is the opposite of that on iOS
@@ -383,7 +383,7 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
             case .possible:
                 break
             case .began:
-                handlers.secondaryDrag?.dragBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.secondaryDrag?.dragBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
                 let translation = gesture.translation(in: view)
                 // macOS uses upside-down clip coords, so the scroll value is the opposite of that on iOS
@@ -402,7 +402,7 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
             case .possible:
                 break
             case .began:
-                handlers.pinch?.pinchBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.pinch?.pinchBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
                 // macOS gesture's magnification=0 corresponds to iOS gesture's scale=1
                 handlers.pinch?.pinchChanged(scale: Float(1 + gesture.magnification))
@@ -419,7 +419,7 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
             case .possible:
                 break
             case .began:
-                handlers.rotation?.rotationBegan(at: RenderController.clipPoint(gesture.location(in: view), view.bounds))
+                handlers.rotation?.rotationBegan(at: GestureCoordinator.clipPoint(gesture.location(in: view), view.bounds))
             case .changed:
                 // multiply by -1 because macOS gestures use upside-down clip space
                 handlers.rotation?.rotationChanged(radians: Float(-gesture.rotation))
@@ -450,3 +450,38 @@ public class GestureCoordinator: NSObject, NSGestureRecognizerDelegate {
 }
 
 #endif  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+extension GestureCoordinator {
+
+    public static func clipPoint(_ viewPt: CGPoint, _ viewBounds: CGRect) -> SIMD2<Float> {
+        // FIXME: ASSUMES viewBounds origin is (0,0)
+        return SIMD2<Float>(clipX(viewPt.x, viewBounds.width), clipY(viewPt.y, viewBounds.height))
+    }
+
+    public static func clipPoint(_ viewPt0: CGPoint, _ viewPt1: CGPoint, _ viewBounds: CGRect) -> SIMD2<Float> {
+        // FIXME: ASSUMES viewBounds origin is (0,0)
+        return SIMD2<Float>(clipX((viewPt0.x + viewPt1.x)/2, viewBounds.width),
+                            clipY((viewPt0.y + viewPt1.y)/2, viewBounds.height))
+    }
+
+    private static func clipX(_ viewX: CGFloat, _ viewWidth: CGFloat) -> Float {
+        return Float(2 * viewX / viewWidth - 1)
+    }
+
+#if os(iOS) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    private static func clipY(_ viewY: CGFloat, _ viewHeight: CGFloat) -> Float {
+        // In iOS, viewY increases toward the TOP of the screen
+        return Float(1 - 2 * viewY / viewHeight)
+    }
+
+#elseif os(macOS) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    private static func clipY(_ viewY: CGFloat, _ viewHeight: CGFloat) -> Float {
+        // In macOS, viewY increaases toward the BOTTOM of the screen
+        return Float(2 * viewY / viewHeight - 1)
+    }
+
+#endif  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+}
