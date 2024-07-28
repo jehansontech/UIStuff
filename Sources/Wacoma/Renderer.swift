@@ -193,9 +193,9 @@ public struct TouchRay: Codable, Sendable {
 
 public class Renderer: NSObject, MTKViewDelegate {
 
-    public var delegate: RendererDelegate?
+    public private(set) var delegate: RendererDelegate?
 
-    var gestureCoordinator: GestureCoordinator
+    public var gestureCoordinator: GestureCoordinator
 
     public let device: MTLDevice!
 
@@ -257,9 +257,9 @@ public class Renderer: NSObject, MTKViewDelegate {
 
     public func draw(in view: MTKView) {
 
-        if delegate == nil {
-            return
-        }
+//        if delegate == nil {
+//            return
+//        }
 
         // print("Renderer.draw")
 
