@@ -1,6 +1,6 @@
 //
-//  MTKView+Snapshot.swift
-//  
+//  MTKView+Extensions.swift
+//  Wacoma
 //
 //  Created by Jim Hanson on 1/8/22.
 
